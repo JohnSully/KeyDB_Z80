@@ -49,3 +49,10 @@ LICENSE
 -------
 
 KeyDB 8-bit is licensed under the Bill Gates License.  For more details see the [LICENSE](./LICENSE) file.
+
+Porting
+-------
+
+KeyDB is designed for our specific IMSAI with its upgraded Z80 CPU card, but porting is trivial for any machine with an 8250.  Simply change the ioport at the top of keydb.asm to the base address of your 80250 compatible UART.  For more complex machines all IO is routed through the getch and putch routines which can be modified to suit your needs.
+
+Note that KeyDB expects the UART to be initialized before it is started.  KeyDB will not modify your baud rate and other settings.
