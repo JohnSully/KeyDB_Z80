@@ -19,8 +19,8 @@ Best of all as a NoSQL database, you won't have to type a line of that nasty SQL
 
 KeyDB 8-bit is able to achieve a whopping 10 queries per second on our 4Mhz Z80!  
 
-How can I try it?
------------------
+How do I use it?
+----------------
 
 KeyDB 8-bit is compiled on a much larger UNIX or Linux machine.  For convenience instructions are provided for Debian and Ubuntu distributions.  Contact your UNIX vendor for additional information.
 
@@ -56,3 +56,8 @@ Porting
 KeyDB is designed for our specific IMSAI with its upgraded Z80 CPU card, but porting is trivial for any machine with an 8250.  Simply change the ioport at the top of keydb.asm to the base address of your 80250 compatible UART.  For more complex machines all IO is routed through the getch and putch routines which can be modified to suit your needs.
 
 Note that KeyDB expects the UART to be initialized before it is started.  KeyDB will not modify your baud rate and other settings.
+
+Adding new commands
+-------------------
+
+All new commands are listed in the command table in commands.asm.  Be sure to follow the format of other commands.  In the table you will add the jump vector for your new routine which you can write in keydb.asm.  Your command enters with HL pointing to the argument string.  Your command must parse it with validate_arg or strtok.
